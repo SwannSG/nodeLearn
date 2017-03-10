@@ -1,0 +1,8 @@
+{
+    "name": "understand_mongoose",
+    "main": "server.js",
+    "description": "A demo app for mongoose",
+    "dependencies": {
+        "mongoose": "~4.8.5"
+    }
+}

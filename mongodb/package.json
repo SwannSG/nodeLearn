@@ -1,0 +1,9 @@
+{
+    "name": "understand_mongo_access",
+    "main": "server.js",
+    "description": "A demo app for mongo interface",
+    "dependencies": {
+        "mongoose": "~4.8.5",
+        "mongod": "^2.0.0"
+    }
+}
