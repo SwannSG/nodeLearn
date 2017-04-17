@@ -1,0 +1,41 @@
+{ValidationError: Stuff validation failed
+    at MongooseError.ValidationError (/home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/error/validation.js: 23: 11)
+    at model.Document.invalidate (/home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/document.js: 1535: 32)
+    at /home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/document.js: 1410: 17
+    at validate (/home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/schematype.js: 706: 7)
+    at /home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/schematype.js: 750: 9
+    at Array.forEach (native)
+    at SchemaString.SchemaType.doValidate (/home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/schematype.js: 711: 19)
+    at /home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/document.js: 1408: 9
+    at _combinedTickCallback (internal/process/next_tick.js: 67: 7)
+    at process._tickCallback (internal/process/next_tick.js: 98: 9)
+    at Module.runMain (module.js: 606: 11)
+    at run (bootstrap_node.js: 394: 7)
+    at startup (bootstrap_node.js: 149: 9)
+    at bootstrap_node.js: 509: 3
+  errors: { my_string: { ValidatorError: Username must be at least2 characters.
+          at MongooseError.ValidatorError (/home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/error/validator.js: 24: 11)
+          at validate (/home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/schematype.js: 705: 13)
+          at /home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/schematype.js: 750: 9
+          at Array.forEach (native)
+          at SchemaString.SchemaType.doValidate (/home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/schematype.js: 711: 19)
+          at /home/swannsg/development/nodeLearn/mongoose/node_modules/mongoose/lib/document.js: 1408: 9
+          at _combinedTickCallback (internal/process/next_tick.js: 67: 7)
+          at process._tickCallback (internal/process/next_tick.js: 98: 9)
+          at Module.runMain (module.js: 606: 11)
+          at run (bootstrap_node.js: 394: 7)
+          at startup (bootstrap_node.js: 149: 9)
+          at bootstrap_node.js: 509: 3
+        message: 'Username must be at least2 characters.',
+        name: 'ValidatorError',
+        properties: [Object
+            ],
+        kind: 'minlength',
+        path: 'my_string',
+        value: 't',
+        reason: undefined
+        }
+    },
+  message: 'Stuff validation failed',
+  name: 'ValidationError'
+}
