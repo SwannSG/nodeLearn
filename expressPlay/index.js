@@ -3,6 +3,17 @@ const app = express();
 const bodyParser = require('body-parser');
 
 
+// global error handler
+const events = require('events');
+const errorEmitter = new events.EventEmitter();
+// listener
+errorEmitter.on('error', function(x) {  
+    console.log("errorEmitter.on('error'.. listener has run")
+    console.log(x);
+})
+// end global error handler
+
+
 function showMethodsAndProperties(iterable_obj) {
     for (each in iterable_obj) {
         if (typeof(iterable_obj[each])=== 'function'){
@@ -110,9 +121,11 @@ function errorCatcher(error, req, res, next) {
         // set response and send directly to client
         console.log('error path')
         res.statusCode = error.statusCode;
-        res.statusMessage = error.message + ' some user crap';
+        // error.message 
+        res.statusMessage = 'my customer error';
         res.send();
         // add some global error handling
+        errorEmitter.emit('error', error)
         res.end();
     }
     // no error path
@@ -122,23 +135,32 @@ function errorCatcher(error, req, res, next) {
     }
 }
 
-function someJunk(error, req, res, next) {
-    console.log('someJunk');
-    next(error);
+function fn1(req, res, next) {
+    console.log('fn1');
+    next()
 }
 
-//{limit:1}
-app.post('/json-handler', bodyParser.json(), someJunk, errorCatcher,  (req,res) => {
-    console.log('hello there');
+function fn2(req, res, next) {
+    next();
+}
+
+app.post('/json-handler', bodyParser.json({limit:10000}), fn1, fn2,  errorCatcher,  (req,res) => {
+    console.log('/json-handler');
     console.log(req.body);
-    console.log(res.statusCode);
+    res.statusCode = 200; // is actually automatically set
+    res.send(JSON.stringify({ a: 1, b:2 }));
+});
 
-res.send(JSON.stringify({ a: 1 }));
+app.get('/form', (req,res) => {
+    console.log('GET /form');
+    res.sendFile('/home/swannsg/development/nodeLearn/expressPlay/form.html');
+});
 
-    res.sendStatus(200);
-})
-
-
+//bodyParser.urlencoded()
+app.post('/form', bodyParser.raw(), (req,res) => {
+    console.log('POST /form');
+    console.log(req.body)
+});
 
 
 // app.post('/json-handler', bodyParser.json({limit:1}), (req,res) => {
