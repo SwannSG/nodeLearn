@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const multer  = require('multer');
+let upload = multer();
 
 
 // global error handler
@@ -157,10 +159,17 @@ app.get('/form', (req,res) => {
 });
 
 //bodyParser.urlencoded()
-app.post('/form', bodyParser.raw(), (req,res) => {
+// app.post('/form', bodyParser.urlencoded(), (req,res) => {
+//     console.log('POST /form');
+//     console.log(req.body)
+// });
+
+//multipart/form-data
+app.post('/form', upload.fields(), (req,res) => {
     console.log('POST /form');
     console.log(req.body)
 });
+
 
 
 // app.post('/json-handler', bodyParser.json({limit:1}), (req,res) => {
